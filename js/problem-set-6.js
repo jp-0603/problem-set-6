@@ -40,15 +40,31 @@ ctx.strokeText(`Hello, World!`, 10, 50);
  */
 
 function drawRectangle() {
-  height=prompt(`Height:`)
-  width=prompt(`Width:`)
-  xvalue=prompt(`X:`)
-  yvalue=prompt(`Y:`)
+  let drawRectangle = document.getElementById('canvas2');
+  let context = drawRectangle.getContext('2d');
+  context.clearRect(0, 0, drawRectangle.width, drawRectangle.height);
 
-while(height>1)
-var ctx = document.getElementById(`canvas2`).getContext(`2d`)
-ctx.strokeStyle = 'blue';
+  let height;
+  do {
+    height = Number(prompt('Enter a height.'));
+  } while (height < 1 || !Number.isInteger(height));
 
+  let width;
+  do {
+    width = Number(prompt('Enter a width.'));
+  } while (width < 1 || !Number.isInteger(width));
+
+  let x;
+  do {
+    x = Number(prompt('Enter a x value.'));
+  } while (x < 5 || !Number.isInteger(x));
+
+  let y;
+  do {
+    y = Number(prompt('Enter a y value.'));
+  } while (y < 5 || !Number.isInteger(y));
+
+  context.strokeRect(x, y, width, height);
 }
 
 /*
@@ -77,6 +93,15 @@ ctx.strokeStyle = 'blue';
  */
 
 function drawColoredRectangle() {
+  let drawColoredRectangle = document.getElementById('canvas3');
+  let context2 = drawColoredRectangle.getContext('2d');
+  context2.clearRect(10, 10, 100, 50);
+
+userColor
+
+
+let userColor = prompt(`Enter a color.`)
+if (userColor)
 
 }
 
