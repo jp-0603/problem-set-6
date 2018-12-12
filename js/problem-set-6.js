@@ -11,9 +11,9 @@
  */
 
 function sayHello() {
-var ctx = document.getElementById(`canvas1`).getContext(`2d`)
-ctx.font = `48px Sans-Serif`;
-ctx.strokeText(`Hello, World!`, 10, 50);
+var hello = document.getElementById(`canvas1`).getContext(`2d`)
+hello.font = `48px Sans-Serif`;
+hello.strokeText(`Hello, World!`, 10, 50);
 }
 
 /*
@@ -93,17 +93,18 @@ function drawRectangle() {
  */
 
 function drawColoredRectangle() {
-  let drawColoredRectangle = document.getElementById('canvas3');
-  let context2 = drawColoredRectangle.getContext('2d');
-  context2.clearRect(10, 10, 100, 50);
+  let canvas3 = document.getElementById('canvas3');
+  let context2 = canvas3.getContext('2d');
+  context2.clearRect(10, 10, canvas3.width, canvas3.height);
+  let canvasDrawing = false
+  userColor = prompt(`Enter a color.`)
 
-userColor
-
-
-let userColor = prompt(`Enter a color.`)
-if (userColor)
-
+  if (userColor == `black` || userColor == `blue` || userColor == `green` || userColor == `orange` || userColor == `purple` || userColor == `red` || userColor == `yellow`)
+    canvasDrawing = true
 }
+  context2.fillStyle=`userColor`
+  context2.fillRect(10, 10, 100, 50);
+
 
 /*
  * Triangle. 5 points.
