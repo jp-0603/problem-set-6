@@ -94,17 +94,17 @@ function drawRectangle() {
 
 function drawColoredRectangle() {
   let canvas3 = document.getElementById('canvas3');
-  let context2 = canvas3.getContext('2d');
-  context2.clearRect(10, 10, canvas3.width, canvas3.height);
+  let ctx = canvas3.getContext('2d');
+  ctx.clearRect(0, 0, canvas3.width, canvas3.height);
   let canvasDrawing = false
-  userColor = prompt(`Enter a color.`)
+  userColor = prompt("Enter a color.");
 
-  if (userColor == `black` || userColor == `blue` || userColor == `green` || userColor == `orange` || userColor == `purple` || userColor == `red` || userColor == `yellow`)
-    canvasDrawing = true
+  if (userColor == "black" || userColor == "blue" || userColor == "green" || userColor == "orange" || userColor == "purple" || userColor == "red" || userColor == "yellow"){
+    canvasDrawing = true;
 }
-  context2.fillStyle=`userColor`
-  context2.fillRect(10, 10, 100, 50);
-
+  ctx.fillStyle=userColor;
+  ctx.fillRect(10, 10, 100, 50);
+}
 
 /*
  * Triangle. 5 points.
@@ -159,7 +159,25 @@ function drawTriangle() {
  */
 
 function drawSmileyFace() {
+  let canvas5 = document.getElementById('canvas5');
+  let ctx = canvas5.getContext('2d');
+  let userRadius = prompt(`Enter a radius`)
 
+  ctx.beginPath();
+  ctx.arc(userRadius + 10,userRadius + 10,userRadius*2,userRadius*2,Math.PI*2);
+  ctx.moveTo(120,120);
+
+  ctx.beginPath();
+  ctx.arc(userRadius + 10,userRadius + 10,userRadius*0.7,userRadius*0.7,Math.PI*2);
+  ctx.moveTo(25,50);
+
+  ctx.beginPath();
+  ctx.arc(userRadius + 10,userRadius + 10,userRadius*0.1,userRadius*0.1,Math.PI*2);
+  ctx.moveTo(50,75);
+
+  ctx.beginPath();
+  ctx.arc(userRadius + 10,userRadius + 10,userRadius*0.1,userRadius*0.1,Math.PI*2);
+  ctx.stroke();
 }
 
 /*
