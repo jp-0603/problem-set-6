@@ -11,7 +11,7 @@
  */
 
 function sayHello() {
-var hello = document.getElementById(`canvas1`).getContext(`2d`)
+let hello = document.getElementById(`canvas1`).getContext(`2d`)
 hello.font = `48px Sans-Serif`;
 hello.strokeText(`Hello, World!`, 10, 50);
 }
@@ -101,6 +101,9 @@ function drawColoredRectangle() {
 
   if (userColor == "black" || userColor == "blue" || userColor == "green" || userColor == "orange" || userColor == "purple" || userColor == "red" || userColor == "yellow"){
     canvasDrawing = true;
+}
+else{
+  alert(`The inputed color is not supported. Try another color.`)
 }
   ctx.fillStyle=userColor;
   ctx.fillRect(10, 10, 100, 50);
@@ -273,5 +276,13 @@ function drawPyramid() {
  */
 
 function drawHouse() {
+let drawHouse = document.getElementById(`canvas9`).getContext("2d");
+drawHouse.clearRect(0,0,canvas9.width, canvas9.height);
+let userHouse = prompt(`Enter a color for the house`)
+let userDoor = prompt(`Enter a color for the door`)
 
+if (userHouse == "blue" || userHouse == "brown" || userHouse == "green" || userHouse == "orange" || userHouse == "purple" || userHouse == "red" || userHouse == "yellow"){
+userHouse.fillRect(150,750,750,500)
+userHouse.fillStyle = userHouse
+}
 }
