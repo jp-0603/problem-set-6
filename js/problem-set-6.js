@@ -139,6 +139,31 @@ else{
  */
 
 function drawTriangle() {
+  let triangle = document.getElementById("canvas4").getContext("2d");
+
+  let side1 = Number(prompt("Please enter a positive interger for your left side length."));
+  let side2 = Number(prompt("Please enter a positive interger for your bottom side length."));
+  let side3 = Number(prompt("Please enter a positive interger for your hypotenuse length."));
+  let triangleX = 10;
+  let triangleY = 10;
+  let canvasDrawing = false;
+  triangle.clearRect(0, 0, canvas4.width, canvas4.height)
+
+if((side1*side1 + side2*side2 == side3*side3) && side1>0 && side2>0 && side3>0 && canvas4.width-triangleX-side1>=0 && canvas4.height-triangleY-side2>=0){
+    canvasDrawing = true;
+    } else{
+      alert("That is not a valid right triangle.")
+    }
+  if(canvasDrawing == true){
+    triangle.beginPath();
+    triangle.moveTo(triangleX, triangleY);
+    triangle.lineTo(triangleX, triangleY+side1);
+    triangle.lineTo(triangleX+side2, triangleY+side1);
+    triangle.lineTo(triangleX, triangleY);
+    triangle.closePath();
+    triangle.stroke();
+  }
+
 
 }
 
@@ -162,25 +187,40 @@ function drawTriangle() {
  */
 
 function drawSmileyFace() {
-  let canvas5 = document.getElementById('canvas5');
-  let ctx = canvas5.getContext('2d');
-  let userRadius = prompt(`Enter a radius`)
+  let canvas5= document.getElementById('canvas5').getContext('2d');
+  canvas5.clearRect(0, 0, canvas5.width, canvas5.height);
 
-  ctx.beginPath();
-  ctx.arc(userRadius + 10,userRadius + 10,userRadius*2,userRadius*2,Math.PI*2);
-  ctx.moveTo(120,120);
+  let userRadius = Number(prompt(`Enter a radius`));
+  let canvasDrawing = false
+  let eyesRadius=userRadius*0.1
+  let mouthRadius=userRadius*0.7
 
-  ctx.beginPath();
-  ctx.arc(userRadius + 10,userRadius + 10,userRadius*0.7,userRadius*0.7,Math.PI*2);
-  ctx.moveTo(25,50);
+  if(userRadius >= 1 && userRadius <= canvas5.width && userRadius <= canvas5.height && Number.isInteger(userRadius)){
+    canvasDrawing = true;
+  }
+  else{
+    alert("Invalid radius. Please try again.")
+}
 
-  ctx.beginPath();
-  ctx.arc(userRadius + 10,userRadius + 10,userRadius*0.1,userRadius*0.1,Math.PI*2);
-  ctx.moveTo(50,75);
+  canvas5.beginPath();
+  canvas5.arc(userRadius + 10, userRadius + 10, userRadius, 0, Math.PI * 2);
+  canvas5.stroke();
+  canvas5.closePath();
 
-  ctx.beginPath();
-  ctx.arc(userRadius + 10,userRadius + 10,userRadius*0.1,userRadius*0.1,Math.PI*2);
-  ctx.stroke();
+  canvas5.beginPath();
+  canvas5.arc(userRadius + 10 - userRadius/3, userRadius + 10 - userRadius/4, eyesRadius,0, Math.PI*2);
+  canvas5.stroke();
+  canvas5.closePath();
+
+  canvas5.beginPath();
+  canvas5.arc(userRadius + 10 + userRadius/3, userRadius + 10 - userRadius/4, eyesRadius, 0, Math.PI*2);
+  canvas5.stroke();
+  canvas5.closePath();
+
+  canvas5.beginPath();
+  canvas5.arc(userRadius + 10, userRadius + 10, mouthRadius, 0, Math.PI);
+  canvas5.stroke();
+  canvas5.closePath();
 }
 
 /*
@@ -202,8 +242,40 @@ function drawSmileyFace() {
  */
 
 function drawStar() {
+   let starDrawing = document.getElementById("canvas6").getContext("2d");
+   starDrawing.clearRect(0,0,1024,760);
 
-}
+   let outerRadius;
+   let innerRadius;
+   do {
+     outerRadius = Number(prompt("Outer Radius:"));
+   } while (isNaN(outerRadius));
+   do {
+     innerRadius = Number(prompt("Inner Radius:"));
+   } while (isNaN(innerRadius));
+
+   let degrees = 0;
+
+   if (innerRadius > outerRadius){
+     alert("Your outer radius must be larger than your inner radius.");
+   } else if (outerRadius<2){
+     alert("Your outer radius is too small.");
+   } else if (innerRadius<1){
+     alert("Your inner radius is too small");
+   } else {
+     starDrawing.beginPath();
+     starDrawing.moveTo(125,125-outerRadius);
+     }
+for (let i=0; i<=5; i++){
+  starDrawing.lineTo(125+Math.round((Math.cos(Math.PI*(degrees-90)/180)*outerRadius)), 125+Math.round((Math.sin(Math.PI*(degrees-90)/180)*outerRadius)));
+  degrees +=36;
+  starDrawing.lineTo(125+Math.round((Math.cos(Math.PI*(degrees-90)/180)*innerRadius)), 125+Math.round((Math.sin(Math.PI*(degrees-90)/180)*innerRadius)));
+  degrees +=36;
+     }
+     starDrawing.stroke();
+     starDrawing.closePath();
+   }
+
 
 /*
  * Stop Sign. 7 points.
@@ -221,8 +293,32 @@ function drawStar() {
  */
 
 function drawStopSign() {
+  let stopSign = document.getElementById("canvas7").getContext("2d");
+  stopSign.clearRect(0, 0, canvas7.height, canvas7.width)
+  let side = 80;
+  let i = Number((80/Math.sqrt(2)).toFixed(0));
+  let signX = 70;
+  let signY = 10;
 
+    stopSign.beginPath();
+    stopSign.moveTo(signX,signY);
+    stopSign.lineTo(signX+side,signY);
+    stopSign.lineTo(signX+side+i,signY+i);
+    stopSign.lineTo(signX+side+i,signY+side+i);
+    stopSign.lineTo(signX+side,signY+side+i+i);
+    stopSign.lineTo(signX,signY+side+i+i);
+    stopSign.lineTo(signX-i,signY+side+i);
+    stopSign.lineTo(signX-i,signY+i);
+    stopSign.lineTo(signX,signY);
+    stopSign.fillStyle="red";
+    stopSign.fill();
+    stopSign.closePath();
+
+  stopSign.fillStyle="white";
+  stopSign.font="65px sans-serif";
+  stopSign.fillText("STOP", 22, 133);
 }
+
 
 /*
  * Pyramid. 7 points.
@@ -243,9 +339,23 @@ function drawStopSign() {
  */
 
 function drawPyramid() {
-
-}
-
+    let pyramid = document.getElementById('canvas8').getContext("2d")
+    pyramid.clearRect(0, 0, canvas8.width, canvas8.height);
+    let length=Number(prompt("Please enter a side length"));
+    let pyramidx = 10;
+    let pyramidY = canvas8.height-10;
+    let i = 0;
+    lineNumber = 1;
+    while(i < 5){
+      for(let j = 0+lineNumber;j <= 5; j++){
+        pyramid.strokeRect(pyramidx, pyramidY - length, length, length);
+        pyramidx += length;
+      }
+    pyramidx = 10 + (length / 2) * lineNumber;
+    pyramidY -= length;
+      lineNumber++;
+      i++;
+    }
 /*
  * House. 7 points.
  *
@@ -282,7 +392,45 @@ let userHouse = prompt(`Enter a color for the house`)
 let userDoor = prompt(`Enter a color for the door`)
 
 if (userHouse == "blue" || userHouse == "brown" || userHouse == "green" || userHouse == "orange" || userHouse == "purple" || userHouse == "red" || userHouse == "yellow"){
-userHouse.fillRect(150,750,750,500)
-userHouse.fillStyle = userHouse
+  drawHouse.fillStyle="black";
+  drawHouse.fillRect(150,300,724,450);
+  drawHouse.fillStyle=userHouse;
+  drawHouse.fillRect(151,301,722,448);
+  drawHouse.fill();
+
+  drawHouse.beginPath();
+  drawHouse.moveTo(150,300);
+  drawHouse.lineTo(510,10);
+  drawHouse.lineTo(860,300);
+  drawHouse.lineTo(150,300);
+  drawHouse.fillStyle="black";
+  drawHouse.fill();
+  drawHouse.closePath();
+  drawHouse.beginPath();
+  drawHouse.moveTo(150,300);
+  drawHouse.lineTo(510,12);
+  drawHouse.lineTo(870,300);
+  drawHouse.lineTo(150,300);
+  drawHouse.fillStyle="gray";
+  drawHouse.fill();
+  drawHouse.closePath();
+
+  drawHouse.fillStyle="black";
+  drawHouse.fillRect(260,620,80,80);
+  drawHouse.fillRect(260,400,80,80);
+  drawHouse.fillRect(684,620,80,80);
+  drawHouse.fillRect(700,400,80,80);
+  drawHouse.fillStyle="lightblue";
+  drawHouse.fillRect(261,620,80,80);
+  drawHouse.fillRect(261,400,80,80);
+  drawHouse.fillRect(685,620,80,80);
+  drawHouse.fillRect(700,400,80,80);
+
+  drawHouse.fillStyle="black"
+  drawHouse.fillRect(462,590,100,160);
+  drawHouse.fillStyle=userDoor;
+  drawHouse.fillRect(462,590,100,160);
+} else {
+  alert("One or more than one of your colors is not supported. Please try again.");}
 }
 }
